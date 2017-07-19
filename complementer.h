@@ -1,23 +1,26 @@
 #ifndef COMPLEMENTER_H
 #define COMPLEMENTER_H
 
+#include <algorithm>
+#include <functional>
+#include <list>
 #include <set>
 #include <string>
-#include <list>
-#include <algorithm>
+#include <vector>
 
-class Complementer
-{
+class Complementer {
 public:
-    Complementer(std::set<std::string> data);
+    Complementer(const std::set<std::string>& data);
+    Complementer(std::set<std::string>&& data);
 
-    void setInput(const std::string &input);
-    const std::list<std::string>& getHints() const;
-    const std::string &getHint() const;
+    void setInput(const std::string& input);
+    const std::vector<std::reference_wrapper<std::string const>>& getHints() const;
+    const std::string& getHint() const;
 
 private:
     std::set<std::string> data;
-    std::list<std::string> hints;
+    //    std::list<std::string> hints;
+    std::vector<std::reference_wrapper<std::string const>> hints;
     std::string hint;
 };
 
