@@ -15,7 +15,7 @@ public:
 
     void setInput(const std::string& input);
     const std::vector<std::reference_wrapper<std::string const>>& getHints() const;
-    const std::string& getHint() const;
+    const std::string& getHint(const std::string& ifNotFound) const;
 
 private:
     std::set<std::string> data;

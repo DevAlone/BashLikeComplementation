@@ -21,15 +21,11 @@ void Complementer::setInput(const std::string& input)
             hints.push_back(std::reference_wrapper<std::string const>(dataStr));
     }
 
-    if (hints.size() < 1)
+    if (hints.size() < 1 || inputSize < 1)
         hint = "";
     else {
         hint = hints.front();
-        int maxCommonSybmols = 0;
         for (const std::string& str : hints) {
-            if (str.size() < maxCommonSybmols)
-                break;
-
             int commonSymbols = 0;
 
             for (std::string::const_iterator it1 = hint.begin(), it2 = str.begin();
@@ -39,10 +35,8 @@ void Complementer::setInput(const std::string& input)
                     break;
                 commonSymbols++;
             }
-            if (commonSymbols >= maxCommonSybmols) {
-                maxCommonSybmols = commonSymbols;
-                hint = hint.substr(0, commonSymbols);
-            }
+
+            hint = hint.substr(0, commonSymbols);
         }
     }
 }
@@ -52,7 +46,7 @@ const std::vector<std::reference_wrapper<const std::string> >& Complementer::get
     return hints;
 }
 
-const std::__cxx11::string& Complementer::getHint() const
+const std::__cxx11::string& Complementer::getHint(const std::string& ifNotFound) const
 {
-    return hint;
+    return hint.size() > 0 ? hint : ifNotFound;
 }

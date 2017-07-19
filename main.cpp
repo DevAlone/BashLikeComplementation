@@ -19,7 +19,7 @@ int main()
             cout << endl;
             for (const std::string& hint : complementer.getHints())
                 cout << "\t" << hint << endl;
-            str = complementer.getHint();
+            str = complementer.getHint(str);
             cout << str;
         } else if (symbol == '\n') {
             str.clear();
